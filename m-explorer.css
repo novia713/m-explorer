@@ -1,0 +1,41 @@
+html {
+  margin:2em;
+}
+.card {
+  float:left;
+  text-align: center;
+}
+
+#buttons {
+
+}
+
+#limit {
+  width: 5em;
+}
+
+.btn_container {
+  float:left;
+}
+
+.gold_container,
+.origin_container,
+.genesis_container,
+.ascending_container {
+  width: 5em;
+  padding-left: 3em;
+  padding-right: 5em;
+}
+
+.text_container {
+  margin-right: 3em;
+}
+
+#address {
+  width: 40em;
+}
+
+#cards-container {
+  width: 90%;
+  margin: 3em;
+}
