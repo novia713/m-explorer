@@ -1,10 +1,12 @@
 
 <html>
 <head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="m-explorer.js"></script>
   <link rel="stylesheet" type="text/css" href="m-explorer.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/css/foundation.min.css">
 </head>
-<form name="formu" method="get">
+<form name="formu" method="get" id="formu">
 Eth address: <input type="text" name="address" id="address" size="30" value="<?php echo @$_GET['address']; ?>"/>
 
 <div id="buttons">
@@ -26,7 +28,8 @@ Limit  <input type="number" value="5" id="limit" name="limit"/>
 <div class="btn_container ascending_container">
   Ascending <input type="checkbox" name="ascending" value="true" id="ascending">
 </div>
-<input type="submit" value="Go!" class="button">
+<input type="submit" value="Go!" class="button"/>
+<button type="button" id="mosaic" class="button success">Mosaic</button>
 </form>
 </div>
 <div id="cards-container">
