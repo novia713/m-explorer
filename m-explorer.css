@@ -39,3 +39,21 @@ html {
   width: 90%;
   margin: 3em;
 }
+
+.card ul {
+  list-style: none;
+}
+
+.desired_level {
+  width: 30% !important;
+  float: left;
+}
+
+.row label {
+  float: left;
+  padding-right: 1em;
+}
+
+.actual_level {
+  display: none;
+}
