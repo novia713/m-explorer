@@ -27,4 +27,27 @@ $(document).ready(function(){
 
     $("#result_" + id).text( "You need " + res + " XP!");
   });
+
+  $("#sort_coll_id_asc").click(function(){
+    var result = $('.card').sort(function (a, b) {
+
+      var contentA =parseInt( $(a).attr('coll-id'));
+      var contentB =parseInt( $(b).attr('coll-id'));
+      return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+    });
+
+    $('#cards-container').html(result);
+  });
+
+  $("#sort_coll_id_desc").click(function(){
+    var result = $('.card').sort(function (a, b) {
+
+      var contentA =parseInt( $(a).attr('coll-id'));
+      var contentB =parseInt( $(b).attr('coll-id'));
+      return (contentA > contentB) ? -1 : (contentA < contentB) ? 1 : 0;
+    });
+
+    $('#cards-container').html(result);
+  });
+
 });

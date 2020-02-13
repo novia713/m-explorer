@@ -31,6 +31,8 @@ Limit  <input type="number" value="15" id="limit" name="limit"/>
 </div>
 <input type="submit" value="Go!" class="button"/>
 <button type="button" id="mosaic" class="button success">Mosaic</button>
+<button type="button" id="sort_coll_id_asc" class="button">Sort coll id ASC</button>
+<button type="button" id="sort_coll_id_desc" class="button">Sort coll id DESC</button>
 </form>
 </div>
 <div id="cards-container">
@@ -108,11 +110,12 @@ if ($_GET){
 
   foreach ($data['cards'] as $card) {
     if (@$card->image) {
-      echo '<div class="card">';
+      $coll_id = $card->domain_collection->collection_number;
+      echo '<div class="card" coll-id="'.$coll_id.'" level="'.$card->level.'" card-id="'.$card->nft_id.'">';
       echo $dropdown($card);
       echo "<img src='".$card->image."' border='0'/>";
       echo '<div class="card-section">';
-      echo "<p>coll id. <code>".$card->domain_collection->collection_number."</code></em></p>";
+      echo "<p>coll id. <code>".$coll_id."</code></em></p>";
       echo "<p>level <code>".$card->level."</code></em></p>";
       $badge = ($card->domain_collection->is_gold_card == true)? 'badge':'primary';
       echo '<p><span class="'.$badge.' alert">'.$card->nft_id.'</span></p>';
