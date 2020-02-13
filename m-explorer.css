@@ -10,6 +10,10 @@ html {
 
 }
 
+#sorting_buttonz {
+  padding-top: 2em;
+}
+
 #limit {
   width: 5em;
 }

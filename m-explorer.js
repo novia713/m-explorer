@@ -1,15 +1,15 @@
-$(document).ready(function(){
+$(document).ready(function () {
   $(document).foundation();
 
 
-  $("#mosaic").click(function(){
+  $("#mosaic").click(function () {
     $("#formu").hide();
     $(".card-section").hide();
     $(".or").hide();
   });
 
 
-  $(".calculate").click(function(){
+  $(".calculate").click(function () {
     $("#result").val("");
     var id = $(this).attr('data-id');
     var actual_level = $("#actual_level_" + id).text();
@@ -17,33 +17,51 @@ $(document).ready(function(){
     if (!desired_level) {
       desired_level = 100;
     }
-    if (typeof actual_level !== 'number' || typeof desired_level !== 'number'){
+    if (typeof actual_level !== 'number' || typeof desired_level !== 'number') {
       $("#result_" + id).val("Please, introduce numbers!");
     }
     var res = 0;
-    for (i = +actual_level; i < +desired_level; i++){
+    for (i = +actual_level; i < +desired_level; i++) {
       res += i * 100;
     }
 
-    $("#result_" + id).text( "You need " + res + " XP!");
+    $("#result_" + id).text("You need " + res + " XP!");
   });
 
-  $("#sort_coll_id_asc").click(function(){
+  $("#sort_coll_id_asc").click(function () {
     var result = $('.card').sort(function (a, b) {
-
-      var contentA =parseInt( $(a).attr('coll-id'));
-      var contentB =parseInt( $(b).attr('coll-id'));
+      var contentA = parseInt($(a).attr('coll-id'));
+      var contentB = parseInt($(b).attr('coll-id'));
       return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
     });
 
     $('#cards-container').html(result);
   });
 
-  $("#sort_coll_id_desc").click(function(){
+  $("#sort_coll_id_desc").click(function () {
     var result = $('.card').sort(function (a, b) {
+      var contentA = parseInt($(a).attr('coll-id'));
+      var contentB = parseInt($(b).attr('coll-id'));
+      return (contentA > contentB) ? -1 : (contentA < contentB) ? 1 : 0;
+    });
 
-      var contentA =parseInt( $(a).attr('coll-id'));
-      var contentB =parseInt( $(b).attr('coll-id'));
+    $('#cards-container').html(result);
+  }); sort_level_asc
+
+  $("#sort_level_asc").click(function () {
+    var result = $('.card').sort(function (a, b) {
+      var contentA = parseInt($(a).attr('level'));
+      var contentB = parseInt($(b).attr('level'));
+      return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+    });
+
+    $('#cards-container').html(result);
+  });
+
+  $("#sort_level_desc").click(function () {
+    var result = $('.card').sort(function (a, b) {
+      var contentA = parseInt($(a).attr('level'));
+      var contentB = parseInt($(b).attr('level'));
       return (contentA > contentB) ? -1 : (contentA < contentB) ? 1 : 0;
     });
 
