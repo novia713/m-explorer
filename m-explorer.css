@@ -40,6 +40,11 @@ html {
   display: inline-block;
 }
 
+.select2-selection{
+  height: 2em;
+  width: 10em;
+}
+
 #address {
   width: 40em;
 }

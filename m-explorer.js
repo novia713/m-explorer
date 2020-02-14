@@ -71,6 +71,7 @@ $(document).ready(function () {
 
   $("#select2_domains").select2({
     width: '12em',
+    height: '2em',
     ajax: {
       url: 'https://ws.marble.cards/task/search/get_domains_task',
       dataType: 'json',
