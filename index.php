@@ -67,6 +67,8 @@
       'timeout'  => 2.0,
     ]);
 
+    $domain = isset($_GET['domain'])? [$_GET['domain']] : [];
+
     $headers = ['Accept' => 'application/json', 'Content-Type' => 'application'];
     $body = [
       "page" => 1,
@@ -74,7 +76,7 @@
       "limit" => (int) $_GET['limit'],
       "search" => [
         "title" => (string) $_GET['text'],
-        "domains" => [$_GET['domain']],
+        "domains" => $domain,
         "is_untagged" => false,
         "is_genesis" => (bool) $_GET['genesis'],
         "is_origin" => (bool) $_GET['origin'],
