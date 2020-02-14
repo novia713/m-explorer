@@ -68,4 +68,25 @@ $(document).ready(function () {
     $('#cards-container').html(result);
   });
 
+
+  $("#select2_domains").select2({
+    width: '12em',
+    ajax: {
+      url: 'https://ws.marble.cards/task/search/get_domains_task',
+      dataType: 'json',
+      processResults: function (data, params) {
+        return {
+          results: $.map(data, function (data) {
+            return {
+              id: data.id,
+              text: "<img src='" + data.favicon_url + "' height='16px' width='16'/>&nbsp;" + data.domain
+            };
+          })
+        };
+      },
+      cache: true,
+    },
+    escapeMarkup: function (markup) { return markup; },
+  });
+
 });

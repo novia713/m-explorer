@@ -35,6 +35,11 @@ html {
   margin-right: 3em;
 }
 
+#address_container,
+#address_container span {
+  display: inline-block;
+}
+
 #address {
   width: 40em;
 }

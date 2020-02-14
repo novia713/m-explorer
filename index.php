@@ -3,13 +3,22 @@
 <head>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/js/foundation.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
   <script type="text/javascript" src="m-explorer.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="m-explorer.css">
 </head>
 <form name="formu" method="get" id="formu">
-  Eth address: <input type="text" name="address" id="address" size="30" value="<?php echo @$_GET['address']; ?>" />
-
+  <div id="address_container">
+    <span>
+      Eth address: <input type="text" name="address" id="address" size="30" value="<?php echo @$_GET['address']; ?>" />
+    </span>
+    <span>
+      Collection:
+      <select id="select2_domains" name="domain"></select>
+    </span>
+  </div>
   <div id="buttons">
     <div class="btn_container text_container">
       Text: <input type="text" name="text" id="text" size="30" />
@@ -65,7 +74,7 @@
       "limit" => (int) $_GET['limit'],
       "search" => [
         "title" => (string) $_GET['text'],
-        "domains" => [],
+        "domains" => [$_GET['domain']],
         "is_untagged" => false,
         "is_genesis" => (bool) $_GET['genesis'],
         "is_origin" => (bool) $_GET['origin'],
