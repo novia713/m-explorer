@@ -90,4 +90,59 @@ $(document).ready(function () {
     escapeMarkup: function (markup) { return markup; },
   });
 
+
+  //filters persistence
+  var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+      sURLVariables = sPageURL.split('&'),
+      sParameterName,
+      i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+
+      if (sParameterName[0] === sParam) {
+        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+      }
+    }
+  };
+
+  var domain = getUrlParameter('domain');
+  var text = getUrlParameter('text');
+  var limit = getUrlParameter('limit');
+  var text = getUrlParameter('text');
+  var gold = getUrlParameter('gold');
+  var origin = getUrlParameter('origin');
+  var genesis = getUrlParameter('genesis');
+  var ascending = getUrlParameter('ascending');
+
+  //if (domain) {
+  //  $("#select2_domains").click();
+  //  $("#select2_domains").val(domain).trigger('change');
+  //}
+
+  if (text) {
+    $('#text').val(text);
+  }
+
+  if (limit) {
+    $('#limit').val(limit);
+  }
+
+  if (gold) {
+    $('#gold').prop('checked', true);
+  }
+
+  if (origin) {
+    $('#origin').prop('checked', true);
+  }
+
+  if (genesis) {
+    $('#genesis').prop('checked', true);
+  }
+
+  if (ascending) {
+    $('#ascending').prop('checked', true);
+  }
+
 });
