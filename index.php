@@ -173,6 +173,7 @@
         echo '<p>
           <a href="https://marble.cards/card/' . $card->nft_id . '">
             <span class="' . $badge . ' alert">' . $card->nft_id . '</span></a></p>';
+        echo "<button class='button tiny'>Add to deck</button>";
         echo '</div>';
         echo '</div>';
       }

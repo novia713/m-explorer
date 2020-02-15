@@ -69,6 +69,7 @@ $(document).ready(function () {
   });
 
 
+  //select2
   $("#select2_domains").select2({
     width: '12em',
     height: '2em',
@@ -116,10 +117,31 @@ $(document).ready(function () {
   var genesis = getUrlParameter('genesis');
   var ascending = getUrlParameter('ascending');
 
-  //if (domain) {
-  //  $("#select2_domains").click();
-  //  $("#select2_domains").val(domain).trigger('change');
-  //}
+  if (domain) {
+    $.ajax({
+      type: 'GET',
+      url: 'https://ws.marble.cards/task/search/get_domains_task'
+    }).then(function (data) {
+      var _ = null;
+      data.forEach(element => {
+        if (element.id == domain){
+          _ = element;
+          text = "<img src='" + _.favicon_url + "' height='16px' width='16'/>&nbsp;" + _.domain
+        }
+      });
+      // create the option and append to Select2
+      var option = new Option(text, _.id, true, true);
+      $("#select2_domains").append(option).trigger('change');
+
+      // manually trigger the `select2:select` event
+      $("#select2_domains").trigger({
+        type: 'select2:select',
+        params: {
+          data: data
+        }
+      });
+    });
+  }
 
   if (text) {
     $('#text').val(text);
