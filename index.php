@@ -27,16 +27,48 @@
       Limit <input type="number" value="15" id="limit" name="limit" />
     </div>
     <div class="btn_container gold_container">
-      Gold <input type="checkbox" name="gold" value="true" id="gold">
+      <p>Gold</p>
+      <div class="switch">
+        <input class="switch-input" id="gold" type="checkbox" name="gold">
+        <label class="switch-paddle" for="gold">
+          <span class="show-for-sr">Gold</span>
+          <span class="switch-active" aria-hidden="true">Yes</span>
+          <span class="switch-inactive" aria-hidden="true">No</span>
+        </label>
+      </div>
     </div>
     <div class="btn_container origin_container">
-      Origin <input type="checkbox" name="origin" value="true" id="origin">
+      <p>Origin</p>
+      <div class="switch">
+        <input class="switch-input" id="origin" type="checkbox" name="origin">
+        <label class="switch-paddle" for="origin">
+          <span class="show-for-sr">Origin</span>
+          <span class="switch-active" aria-hidden="true">Yes</span>
+          <span class="switch-inactive" aria-hidden="true">No</span>
+        </label>
+      </div>
     </div>
     <div class="btn_container genesis_container">
-      Genesis <input type="checkbox" name="genesis" value="true" id="genesis">
+      <p>Genesis</p>
+      <div class="switch">
+        <input class="switch-input" id="genesis" type="checkbox" name="genesis">
+        <label class="switch-paddle" for="genesis">
+          <span class="show-for-sr">Genesis</span>
+          <span class="switch-active" aria-hidden="true">Yes</span>
+          <span class="switch-inactive" aria-hidden="true">No</span>
+        </label>
+      </div>
     </div>
     <div class="btn_container ascending_container">
-      Ascending <input type="checkbox" name="ascending" value="true" id="ascending">
+      <p>Ascending</p>
+      <div class="switch">
+        <input class="switch-input" id="ascending" type="checkbox" name="ascending">
+        <label class="switch-paddle" for="ascending">
+          <span class="show-for-sr">Ascending</span>
+          <span class="switch-active" aria-hidden="true">Yes</span>
+          <span class="switch-inactive" aria-hidden="true">No</span>
+        </label>
+      </div>
     </div>
     <input type="submit" value="Go!" class="button" />
     <button type="button" id="mosaic" class="button success">Mosaic</button>
@@ -67,7 +99,11 @@
       'timeout'  => 2.0,
     ]);
 
-    $domain = isset($_GET['domain'])? [$_GET['domain']] : [];
+    $domain = isset($_GET['domain']) ? [$_GET['domain']] : [];
+    $_GET['gold'] = ($_GET['gold'] == 'on') ? true : false;
+    $_GET['origin'] = ($_GET['origin'] == 'on') ? true : false;
+    $_GET['genesis'] = ($_GET['genesis'] == 'on') ? true : false;
+    $_GET['ascending'] = ($_GET['ascending'] == 'on') ? true : false;
 
     $headers = ['Accept' => 'application/json', 'Content-Type' => 'application'];
     $body = [
@@ -84,7 +120,6 @@
         "owner" => (string) $_GET['address']
       ]
     ];
-
 
     $response = $client->post('/task/card_index/get_my_cards_task', [
       'headers' => $headers,

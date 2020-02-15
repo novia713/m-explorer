@@ -88,3 +88,7 @@ html {
 .actual_level {
   display: none;
 }
+
+.switch {
+  margin-top: -1em;
+}
