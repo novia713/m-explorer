@@ -4,9 +4,23 @@ html {
 .card {
   float:left;
   text-align: center;
+
+}
+
+.card-wrapper {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  max-height: 100%;
+  place-content: center;  
+  align-items: center;
   box-shadow: 3px 3px 21px -6px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 3px 3px 21px -6px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 3px 21px -6px rgba(0, 0, 0, 0.75);
+}
+
+.marble-img {
+  border-radius: 5.3%/3.7%;
 }
 
 #buttons {

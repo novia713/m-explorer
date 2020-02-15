@@ -130,7 +130,7 @@
         $coll_id = $card->domain_collection->collection_number;
         echo '<div class="card" coll-id="' . $coll_id . '" level="' . $card->level . '" card-id="' . $card->nft_id . '">';
         echo $dropdown($card);
-        echo "<img src='" . $card->image . "' border='0'/>";
+        echo "<div class='card-wrapper'><img class='marble-img' src='" . $card->image . "' border='0'/></div>";
         echo '<div class="card-section">';
         echo "<p>coll id. <code>" . $coll_id . "</code></em></p>";
         echo "<p>level <code>" . $card->level . "</code></em></p>";
