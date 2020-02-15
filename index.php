@@ -1,92 +1,14 @@
-<html>
-
-<head>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/js/foundation.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-  <script type="text/javascript" src="m-explorer.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="m-explorer.css">
-</head>
-<form name="formu" method="get" id="formu">
-  <div id="address_container">
-    <span>
-      Eth address: <input type="text" name="address" id="address" size="30" value="<?php echo @$_GET['address']; ?>" />
-    </span>
-    <span>
-      Collection:
-      <select id="select2_domains" name="domain"></select>
-    </span>
-  </div>
-  <div id="buttons">
-    <div class="btn_container text_container">
-      Text: <input type="text" name="text" id="text" size="30" />
-    </div>
-    <div class="btn_container">
-      Limit <input type="number" value="15" id="limit" name="limit" />
-    </div>
-    <div class="btn_container gold_container">
-      <p>Gold</p>
-      <div class="switch">
-        <input class="switch-input" id="gold" type="checkbox" name="gold">
-        <label class="switch-paddle" for="gold">
-          <span class="show-for-sr">Gold</span>
-          <span class="switch-active" aria-hidden="true">Yes</span>
-          <span class="switch-inactive" aria-hidden="true">No</span>
-        </label>
-      </div>
-    </div>
-    <div class="btn_container origin_container">
-      <p>Origin</p>
-      <div class="switch">
-        <input class="switch-input" id="origin" type="checkbox" name="origin">
-        <label class="switch-paddle" for="origin">
-          <span class="show-for-sr">Origin</span>
-          <span class="switch-active" aria-hidden="true">Yes</span>
-          <span class="switch-inactive" aria-hidden="true">No</span>
-        </label>
-      </div>
-    </div>
-    <div class="btn_container genesis_container">
-      <p>Genesis</p>
-      <div class="switch">
-        <input class="switch-input" id="genesis" type="checkbox" name="genesis">
-        <label class="switch-paddle" for="genesis">
-          <span class="show-for-sr">Genesis</span>
-          <span class="switch-active" aria-hidden="true">Yes</span>
-          <span class="switch-inactive" aria-hidden="true">No</span>
-        </label>
-      </div>
-    </div>
-    <div class="btn_container ascending_container">
-      <p>Ascending</p>
-      <div class="switch">
-        <input class="switch-input" id="ascending" type="checkbox" name="ascending">
-        <label class="switch-paddle" for="ascending">
-          <span class="show-for-sr">Ascending</span>
-          <span class="switch-active" aria-hidden="true">Yes</span>
-          <span class="switch-inactive" aria-hidden="true">No</span>
-        </label>
-      </div>
-    </div>
-    <input type="submit" value="Go!" class="button" />
-    <button type="button" id="mosaic" class="button success">Mosaic</button>
-  </div>
-  <div id="sorting_buttonz">
-    <button type="button" id="sort_coll_id_asc" class="button tiny secondary">Sort coll id ASC</button>
-    <button type="button" id="sort_coll_id_desc" class="button tiny secondary">Sort coll id DESC</button>
-    <button type="button" id="sort_level_asc" class="button tiny secondary">Level ASC</button>
-    <button type="button" id="sort_level_desc" class="button tiny secondary">Level DESC</button>
-  </div>
-</form>
-
-<div id="cards-container">
-
-  <?php
+<?php
   require "vendor/autoload.php";
 
   use GuzzleHttp\Client;
+  $loader = new \Twig\Loader\FilesystemLoader('templates');
+  $twig = new \Twig\Environment($loader, [
+      'cache' => 'templates/cache',
+      array('auto_reload' => true), //debug
+      ['debug' => true], //debug
+  ]);
+  $output = [];
 
   if ($_GET) {
     $gets = ['ascending', 'limit', 'text', 'genesis', 'origin', 'gold', 'address'];
@@ -160,6 +82,11 @@
   ';
     };
 
+
+    $output['address'] = $_GET['address'];
+    $output['text'] = $_GET['text'];
+    $output['data'] = $data;
+/*
     foreach ($data['cards'] as $card) {
       if (@$card->image) {
         $coll_id = $card->domain_collection->collection_number;
@@ -177,9 +104,7 @@
         echo '</div>';
         echo '</div>';
       }
-    }
+    } */
   }
-  ?>
-</div>
 
-</html>
+  echo $twig->render('index.twig', $output);

@@ -1,13 +1,25 @@
 html {
   margin:2em;
 }
+
+#formu {
+  margin-left: 3em;
+}
+
+#cards-container {
+  margin-top:3em;
+}
+
 .card {
+  margin-bottom: 0px !important;
+  border: 0px !important;
   float:left;
   text-align: center;
-
 }
 
 .card-wrapper {
+  transform: scale(0.8);
+  border-radius: 5.3%/3.7%;
   flex-direction: row;
   box-sizing: border-box;
   display: flex;
@@ -19,8 +31,17 @@ html {
   -moz-box-shadow: 3px 3px 21px -6px rgba(0, 0, 0, 0.75);
 }
 
+.card-section {
+  transform: scale(0.7);
+  margin-top: -4em;
+}
+
 .marble-img {
-  border-radius: 5.3%/3.7%;
+  
+}
+
+.or {
+  margin-bottom: -2em;
 }
 
 #buttons {
@@ -67,8 +88,7 @@ html {
 }
 
 #cards-container {
-  width: 90%;
-  margin: 3em;
+
 }
 
 .card ul {

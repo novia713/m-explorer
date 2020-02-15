@@ -3,7 +3,8 @@
     "description": "A way to explore your marble cards",
     "type": "project",
     "require": {
-        "guzzlehttp/guzzle": "^6.4"
+        "guzzlehttp/guzzle": "^6.4",
+        "twig/twig": "^3.0"
     },
     "require-dev": {
         "kint-php/kint": "^3.2"

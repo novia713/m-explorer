@@ -124,7 +124,7 @@ $(document).ready(function () {
     }).then(function (data) {
       var _ = null;
       data.forEach(element => {
-        if (element.id == domain){
+        if (element.id == domain) {
           _ = element;
           text = "<img src='" + _.favicon_url + "' height='16px' width='16'/>&nbsp;" + _.domain
         }
