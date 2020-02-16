@@ -91,7 +91,7 @@ $(document).ready(function () {
     escapeMarkup: function (markup) { return markup; },
   });
 
-  $("#reset_select").click(function(){
+  $("#reset_select").click(function () {
     $('#select2_domains').val(null).trigger('change');
   });
 
@@ -171,4 +171,14 @@ $(document).ready(function () {
     $('#ascending').prop('checked', true);
   }
 
+  web3 = new Web3(window.ethereum)
+  window.ethereum.enable()
+  .then(function (accounts) {
+    if (accounts[0]){
+      $('#address').val(accounts[0]);
+    }
+  })
+  .catch(error => {
+    console.log(error)
+  })
 });
