@@ -15,5 +15,10 @@
             "name": "leandro",
             "email": "leandro@leandro.org"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "classes/"
+        }
+    }
 }
