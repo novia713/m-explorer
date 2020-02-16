@@ -91,6 +91,10 @@ $(document).ready(function () {
     escapeMarkup: function (markup) { return markup; },
   });
 
+  $("#reset_select").click(function(){
+    $('#select2_domains').val(null).trigger('change');
+  });
+
 
   //filters persistence
   var getUrlParameter = function getUrlParameter(sParam) {

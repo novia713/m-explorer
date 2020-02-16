@@ -18,6 +18,7 @@
         <span>
             Collection:
             <select id="select2_domains" name="domain"></select>
+            <span id="reset_select" class="radius secondary label">Reset collection</span>
         </span>
     </div>
     <div id="buttons">
@@ -84,9 +85,9 @@
 
 <div id="cards-container">
     {% for key, val in data.cards %}
-        <div class="card" 
-            coll-id="{{val.domain_collection.collection_number}}" 
-            level="{{val.level}}" 
+        <div class="card"
+            coll-id="{{val.domain_collection.collection_number}}"
+            level="{{val.level}}"
             card-id="{{val.nft_id}}">
 
             <button data-toggle="dropdown-{{ val.nft_id }}" class="or">&or;</button>
@@ -124,13 +125,13 @@
                 <p>coll id. <code> {{val.domain_collection.collection_number}} </code></em></p>
                 <p>level <code> {{val.level}} </code></em></p>
 
-                
+
                     {% if val.domain_collection.is_gold_card == true %}
                     {% set badge = "badge" %}
                     {% else %}
                     {% set badge = "primary" %}
                     {% endif %}
-                
+
                 <p>
                 <a href="https://marble.cards/card/{{ val.nft_id }}">
                 <span class="{{ badge }} alert">{{ val.nft_id }}</span></a></p>
