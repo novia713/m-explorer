@@ -116,3 +116,13 @@ html {
 #reset_select:hover {
   cursor: pointer;
 }
+
+
+#colls-container {
+  width: 80%;
+  margin-left: 3em;
+}
+
+#table-colls-container {
+  text-align: center;
+}

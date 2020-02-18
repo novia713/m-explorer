@@ -6,10 +6,13 @@ use GuzzleHttp\Client;
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader, [
+    'debug' => true,
     'cache' => 'templates/cache',
     array('auto_reload' => false), //debug
     ['debug' => false], //debug
 ]);
+//debug
+$twig->addExtension(new \Twig\Extension\DebugExtension());
 
 if (@$_GET['address'] && @$_GET['coll_name']) {
     $redis = new Predis\Client([
@@ -17,22 +20,14 @@ if (@$_GET['address'] && @$_GET['coll_name']) {
         'port'   => 6379,
         'database' => 11,
     ]);
+    $redis->pipeline();
 
-    $values = json_decode($redis->get($_GET['address']));
-    $values = (is_object($values)) ?  get_object_vars($values) : $values;
+    
+    $colls = json_decode($redis->get($_GET['address']));
+    $colls = (is_object($colls)) ?  get_object_vars($colls) : $colls;
+    $res['colls'] = $colls;
 
-
-    if (($key = array_search($_GET['coll_name'], $values)) !== false) {
-        unset($values[$key]);
-    }
-
-
-    try {
-        $redis->set($_GET['address'], json_encode($values));
-    } catch (Predis\Connection\ConnectionException $exception) {
-        die($exception->getMessage());
-    }
+    echo $twig->render('my_colls.twig', $res);
 
 
-    print_r($redis->get($_GET['address']));
 }

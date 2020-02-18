@@ -13,16 +13,18 @@ $twig = new \Twig\Environment($loader, [
 
 if (@$_GET['address'] && @$_GET['coll_name']) {
     $redis = new Predis\Client([
-        'host'   => 'localhost',
+        'host'   => '127.0.0.1',
         'port'   => 6379,
         'database' => 11,
     ]);
+    $redis->pipeline();
 
+    
     $values = json_decode($redis->get($_GET['address']));
     $values = (is_object($values)) ?  get_object_vars($values) : $values;
 
-    if (!in_array($_GET['coll_name'], $values)) {
-        $values[] = $_GET['coll_name'];
+    if (!in_array($_GET['coll_name'], @$values)) {
+        $values[uniqid()] = $_GET['coll_name'];
     } else {
         echo "<script>console.info('" . $_GET['coll_name'] . " already exists')</script>";
     }

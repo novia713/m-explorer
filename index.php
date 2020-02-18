@@ -47,6 +47,7 @@
     $http_client = new Leandro\HttpClient;
     $data = $http_client($client, $headers, $body);
     $data = get_object_vars(json_decode($data));
+ 
 
     $output['address'] = $_GET['address'];
     $output['text'] = $_GET['text'];
