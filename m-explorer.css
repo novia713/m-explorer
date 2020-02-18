@@ -126,3 +126,7 @@ html {
 #table-colls-container {
   text-align: center;
 }
+
+#new_coll_input{
+  width: 24em;
+}

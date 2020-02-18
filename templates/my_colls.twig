@@ -14,6 +14,12 @@
 	{% include 'form.twig' %}
 
 	<div id="colls-container">
+		<form method="post" action="new_coll.php">
+			<input name="coll_name" type="text" id="new_coll_input"/>
+			<input name="address" type="hidden" id="my_address"/>
+			<input type="submit" value="New deck" class="button tiny primary">
+		</form>
+
 		<table id="table-colls-container" class="hover stack">
 			{% for key, val in colls %}
 				<tr>

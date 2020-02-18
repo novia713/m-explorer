@@ -14,7 +14,7 @@ $twig = new \Twig\Environment($loader, [
 //debug
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-if (@$_GET['address'] && @$_GET['coll_name']) {
+if (@$_GET['address']) {
     $redis = new Predis\Client([
         'host'   => '127.0.0.1',
         'port'   => 6379,

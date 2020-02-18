@@ -11,7 +11,7 @@ $twig = new \Twig\Environment($loader, [
     ['debug' => false], //debug
 ]);
 
-if (@$_GET['address'] && @$_GET['coll_name']) {
+if (@$_POST['address'] && @$_POST['coll_name']) {
     $redis = new Predis\Client([
         'host'   => '127.0.0.1',
         'port'   => 6379,
@@ -20,22 +20,23 @@ if (@$_GET['address'] && @$_GET['coll_name']) {
     $redis->pipeline();
 
     
-    $values = json_decode($redis->get($_GET['address']));
+    $values = json_decode($redis->get($_POST['address']));
     $values = (is_object($values)) ?  get_object_vars($values) : $values;
+    if (!$values) $values = [];
 
-    if (!in_array($_GET['coll_name'], @$values)) {
-        $values[uniqid()] = $_GET['coll_name'];
+    if (!in_array($_POST['coll_name'], @$values)) {
+        $values[uniqid()] = $_POST['coll_name'];
     } else {
-        echo "<script>console.info('" . $_GET['coll_name'] . " already exists')</script>";
+        echo "<script>console.info('" . $_POST['coll_name'] . " already exists')</script>";
     }
 
 
     try {
-        $redis->set($_GET['address'], json_encode($values));
+        $redis->set($_POST['address'], json_encode($values));
     } catch (Predis\Connection\ConnectionException $exception) {
         die($exception->getMessage());
     }
 
 
-    print_r($redis->get($_GET['address']));
+    header("Location: /my_colls?status=1&address=" . $_POST['address']);
 }
