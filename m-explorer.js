@@ -172,7 +172,7 @@ $(document).ready(function () {
   }
 
   //my_colls
-  $('#my_address').val(
+  $('.my_address').val(
     localStorage.getItem("address")
   );
 

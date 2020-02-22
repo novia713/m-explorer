@@ -22,17 +22,20 @@ if (@$_GET['address'] && @$_GET['coll_name']) {
     $values = (is_object($values)) ?  get_object_vars($values) : $values;
 
 
-    if (($key = array_search($_GET['coll_name'], $values)) !== false) {
-        unset($values[$key]);
+
+
+    if (array_key_exists($_GET['coll_name'], $values)) {
+        unset($values[$_GET['coll_name']]);
     }
 
 
     try {
         $redis->set($_GET['address'], json_encode($values));
+        header("Location: /my_colls?status=1&address=" . $_GET['address']."&status=1");
     } catch (Predis\Connection\ConnectionException $exception) {
         die($exception->getMessage());
     }
 
 
-    print_r($redis->get($_GET['address']));
+
 }

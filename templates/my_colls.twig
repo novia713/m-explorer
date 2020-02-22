@@ -5,7 +5,7 @@
 	<div id="colls-container">
 		<form method="post" action="new_coll.php">
 			<input name="coll_name" type="text" id="new_coll_input"/>
-			<input name="address" type="hidden" id="my_address"/>
+			<input name="address" type="hidden" class="my_address"/>
 			<input type="submit" value="New deck" class="button tiny primary">
 		</form>
 
@@ -16,7 +16,11 @@
 						<a href="/c/?{{ key }}">{{ val }}</a>
 					</td>
 					<td class="delete">
-						<a href="/del_coll.php?{{ key }}" class="button tiny alert">Remove</a>
+						<form method="get" action="del_coll.php">
+							<input name="address" type="hidden" class="my_address"/>
+							<input name="coll_name" type="hidden" value="{{ key }}"/>
+							<input type="submit" value="Remove" class="button tiny alert">
+						</form>
 					</td>
 				</tr>
 			{% endfor %}
