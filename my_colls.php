@@ -4,6 +4,10 @@ require "vendor/autoload.php";
 
 use GuzzleHttp\Client;
 
+if (!Leandro\Helpers::is_valid_address($_GET['address'])){
+  die("no valid address :-/");
+}
+
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader, [
     'debug' => true,
@@ -22,7 +26,7 @@ if (@$_GET['address']) {
     ]);
     $redis->pipeline();
 
-    
+
     $colls = json_decode($redis->get($_GET['address']));
     $colls = (is_object($colls)) ?  get_object_vars($colls) : $colls;
     $res['colls'] = $colls;
