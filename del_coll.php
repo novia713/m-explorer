@@ -2,6 +2,10 @@
 //error_reporting(E_ALL);
 require "vendor/autoload.php";
 
+if (!Leandro\Helpers::is_valid_address($_GET['address'])){
+  die("no valid address :-/");
+}
+
 use GuzzleHttp\Client;
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
