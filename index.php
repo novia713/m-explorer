@@ -30,15 +30,15 @@ if ($_GET) {
   $_GET['ascending'] = ($_GET['ascending'] == 'on') ? true : false;
 
   $headers = [
-    //'Accept' => 'application/json', 
+    //'Accept' => 'application/json',
     'Content-Type' => 'application/x-www-form-urlencoded'
   ];
   $body = [
     "page" => 1,
     "ascending" => ($_GET['ascending']) ?: 0,
-    "limit" => ($_GET['limit']) ?: 0,
+    "limit" => ($_GET['limit']) ? (int)$_GET['limit']: 0,
     "search" => [
-      "title" => ($_GET['text']) ?: '""',
+      "title" => ($_GET['text']) ?: '',
       "domains" => $domain,
       "is_untagged" => 0,
       "is_genesis" => ($_GET['genesis']) ?: 0,

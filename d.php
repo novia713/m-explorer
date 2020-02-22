@@ -1,8 +1,10 @@
 <?php
 //error_reporting(E_ALL);
 require "vendor/autoload.php";
+require_once "inc/anti_xss.php";
 
 use GuzzleHttp\Client;
+use Leandro\Helpers as H;
 // database 11 for collections
 // database 12 for cards
 const COLLECTIONS_DB = 11;
@@ -18,7 +20,7 @@ $twig = new \Twig\Environment($loader, [
 //debug
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-if (Leandro\Helpers::is_valid_uniqid($_SERVER['QUERY_STRING'])) {
+if (H::is_valid_uniqid($_SERVER['QUERY_STRING'])) {
     $redis = (new Leandro\Redis())(CARDS_DB);
 
 

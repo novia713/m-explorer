@@ -176,16 +176,17 @@ $(document).ready(function () {
     localStorage.getItem("address")
   );
 
-  web3 = new Web3(window.ethereum)
+  web3 = new Web3(window.ethereum);
   window.ethereum.enable()
   .then(function (accounts) {
     if (accounts[0]){
-      $('#address').val(accounts[0]);
-      localStorage.setItem("address", accounts[0]);
-      //console.table(localStorage);
+            var checksum = Web3.utils.toChecksumAddress(accounts[0]);
+      $('#address').val(checksum);
+      localStorage.setItem("address", checksum);
     }
   })
   .catch(error => {
     console.log(error)
   })
+
 });
