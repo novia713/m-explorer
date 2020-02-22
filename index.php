@@ -30,8 +30,8 @@ if ($_GET) {
   $_GET['ascending'] = ($_GET['ascending'] == 'on') ? true : false;
 
   $headers = [
-    //'Accept' => 'application/json',
-    'Content-Type' => 'application/x-www-form-urlencoded'
+    'Accept' => 'application/json',
+    'Content-Type' => 'application'
   ];
   $body = [
     "page" => 1,
@@ -50,7 +50,6 @@ if ($_GET) {
 
   //$http_client = new Leandro\HttpClient;
   $data = (new Leandro\HttpClient())($client, $headers, $body);
-  die();
   $data = get_object_vars(json_decode($data));
 
 
