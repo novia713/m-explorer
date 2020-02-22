@@ -11,15 +11,13 @@ $twig = new \Twig\Environment($loader, [
     ['debug' => false], //debug
 ]);
 
-if (@$_POST['address'] && @$_POST['coll_name']) {
-    $redis = new Predis\Client([
-        'host'   => '127.0.0.1',
-        'port'   => 6379,
-        'database' => 11, // 11 for collections
-    ]);
-    $redis->pipeline();
+if (@$_REQUEST['address'] && @$_REQUEST['card_id'] && @$_REQUEST['coll_id']) {
+    $redis = (new Leandro\Redis())(11);
 
-    
+    // first identify coll into user (database 11)
+    // then insert card_id in colls table (database 12)
+    // TODO
+
     $values = json_decode($redis->get($_POST['address']));
     $values = (is_object($values)) ?  get_object_vars($values) : $values;
     if (!$values) $values = [];
