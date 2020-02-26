@@ -39,7 +39,7 @@
                 <img src="{{ val.image_2k }}" border="0"/>
             </div>
             <div class='card-wrapper'>
-                <img class='marble-img' src='{{val.image}}' border='0' />
+                <img class='marble-img' loading="lazy" src='{{val.image}}' border='0' />
             </div>
 
             <div class="card-section">
@@ -56,7 +56,11 @@
                 <p>
                 <a href="https://marble.cards/card/{{ val.nft_id }}">
                 <span class="{{ badge }} alert">{{ val.nft_id }}</span></a></p>
-                <button class='button tiny'>Add to deck</button>
+                <form method="post" action="my_colls.php">
+                    <input type="hidden" name="address" class="my_address">
+                    <input type="hidden" name="card_id" value="{{ val.nft_id }}">
+                    <button type="submit" class='button tiny'>Add to deck</button>
+                </form>
             </div>
         </div>
     {% endfor %}

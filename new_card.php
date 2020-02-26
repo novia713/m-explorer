@@ -52,5 +52,5 @@ if (@$_REQUEST['address'] && @$_REQUEST['card_id'] && @$_REQUEST['coll_id']) {
     }
 
 
-    header("Location: /my_colls?status=1&address=" . $_REQUEST['address']);
+    header("Location: /d?" . $_REQUEST['coll_id']);
 }

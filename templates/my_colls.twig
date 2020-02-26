@@ -13,7 +13,15 @@
 			{% for key, val in colls %}
 				<tr>
 					<td class="coll">
-						<a href="/c/?{{ key }}">{{ val }}</a>
+						<a href="/d?{{ key }}">{{ val }}</a>
+					</td>
+					<td class="delete">
+						<form method="get" action="new_card.php">
+							<input name="address" type="hidden" class="my_address"/>
+							<input name="coll_id" type="hidden" value="{{ key }}"/>
+							<input name="card_id" type="hidden" value="{{ card_id }}"/>
+							<input type="submit" value="Add {{ card_id }} card to this {{ val }} deck" class="button tiny primary">
+						</form>
 					</td>
 					<td class="delete">
 						<form method="get" action="del_coll.php">

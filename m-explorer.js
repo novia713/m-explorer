@@ -178,15 +178,17 @@ $(document).ready(function () {
 
   web3 = new Web3(window.ethereum);
   window.ethereum.enable()
-  .then(function (accounts) {
-    if (accounts[0]){
-            var checksum = Web3.utils.toChecksumAddress(accounts[0]);
-      $('#address').val(checksum);
-      localStorage.setItem("address", checksum);
-    }
-  })
-  .catch(error => {
-    console.log(error)
-  })
+    .then(function (accounts) {
+      if (accounts[0]) {
+        var checksum = Web3.utils.toChecksumAddress(accounts[0]);
+        if ($('#address').val() == '') { 
+          $('#address').val(checksum);
+        }
+        localStorage.setItem("address", checksum);
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
 
 });
