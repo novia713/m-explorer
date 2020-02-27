@@ -1,0 +1,46 @@
+<html>
+
+{% include 'partials/head.twig' %}
+
+<nav aria-label="You are here:" role="navigation">
+  <ul class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    <li>{{ coll_id }}</li>
+  </ul>
+</nav>
+
+
+<div id="cards-container">
+    {% for key, val in cards %}
+        <div class="card"
+            coll-id="{{val.domain_collection.collection_number}}"
+            level="{{val.level}}"
+            card-id="{{val.nft_id}}">
+
+            <div class="reveal" id="modal2x-{{ val.nft_id }}" data-reveal>
+                <img src="{{ val.image_2k }}" border="0"/>
+            </div>
+            <div class='card-wrapper'>
+                <img class='marble-img' loading="lazy" src='{{val.image}}' border='0' />
+            </div>
+
+            <div class="card-section">
+                <p>coll id. <code> {{val.domain_collection.collection_number}} </code></em></p>
+                <p>level <code> {{val.level}} </code></em></p>
+
+
+                    {% if val.domain_collection.is_gold_card == true %}
+                    {% set badge = "badge" %}
+                    {% else %}
+                    {% set badge = "primary" %}
+                    {% endif %}
+
+                <p>
+                <a href="https://marble.cards/card/{{ val.nft_id }}">
+                <span class="{{ badge }} alert">{{ val.nft_id }}</span></a></p>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+</html>

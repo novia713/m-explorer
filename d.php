@@ -17,20 +17,36 @@ $twig = new \Twig\Environment($loader, [
     array('auto_reload' => false), //debug
     ['debug' => false], //debug
 ]);
-//debug
-$twig->addExtension(new \Twig\Extension\DebugExtension());
 
+$out = [];
 if (H::is_valid_uniqid($_SERVER['QUERY_STRING'])) {
     $redis = (new Leandro\Redis())(CARDS_DB);
 
+    $client = new Client([
+        'base_uri' => 'https://ws.marble.cards',
+        'timeout' => 10,
+        'connect_timeout' => 10
+      ]);
 
     $cards = json_decode($redis->get($_SERVER['QUERY_STRING']));
     $cards = (is_object($cards)) ?  get_object_vars($cards) : $cards;
-    $res['cards'] = $cards;
 
-    print_r($cards);
+  
+    foreach ($cards as $card) {
+        $headers = [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application'
+        ];
+        $body = ["nft_id" => $card];
 
-    //echo $twig->render('my_coll.twig', $res);
+        $data = (new Leandro\HttpClient())($client, $headers, $body, 2);
+        $out[] = get_object_vars(json_decode($data));
+    }
+
+    $res['cards'] = $out;
+    $res['coll_id'] = $_SERVER['QUERY_STRING'];
+
+    echo $twig->render('d.twig', $res);
 
 
 }

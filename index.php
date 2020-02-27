@@ -49,7 +49,7 @@ if ($_GET) {
   ];
 
   //$http_client = new Leandro\HttpClient;
-  $data = (new Leandro\HttpClient())($client, $headers, $body);
+  $data = (new Leandro\HttpClient())($client, $headers, $body, 1);
   $data = get_object_vars(json_decode($data));
 
 
