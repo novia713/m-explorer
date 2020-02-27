@@ -5,8 +5,8 @@ require_once "inc/anti_xss.php";
 
 use GuzzleHttp\Client;
 
-if (!Leandro\Helpers::is_valid_address($_REQUEST['address'])){
-  die("no valid address :-/");
+if (!Leandro\Helpers::is_valid_address(@$_REQUEST['address'])) {
+    die("no valid address :-/");
 }
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
@@ -31,9 +31,9 @@ if (@$_REQUEST['address']) {
     $colls = json_decode($redis->get($_REQUEST['address']));
     $colls = (is_object($colls)) ?  get_object_vars($colls) : $colls;
     $res['colls'] = $colls;
-    $res['card_id'] = (int) $_REQUEST['card_id'];
+    if (@$_REQUEST['card_id']) {
+        $res['card_id'] = (int) $_REQUEST['card_id'];
+    }
 
     echo $twig->render('my_colls.twig', $res);
-
-
 }

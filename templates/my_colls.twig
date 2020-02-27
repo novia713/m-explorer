@@ -15,7 +15,8 @@
 					<td class="coll">
 						<a href="/d?{{ key }}">{{ val }}</a>
 					</td>
-					<td class="delete">
+					{% if card_id %}
+					<td class="add">
 						<form method="get" action="new_card.php">
 							<input name="address" type="hidden" class="my_address"/>
 							<input name="coll_id" type="hidden" value="{{ key }}"/>
@@ -23,6 +24,7 @@
 							<input type="submit" value="Add {{ card_id }} card to this {{ val }} deck" class="button tiny primary">
 						</form>
 					</td>
+					{% endif %}
 					<td class="delete">
 						<form method="get" action="del_coll.php">
 							<input name="address" type="hidden" class="my_address"/>
